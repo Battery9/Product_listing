@@ -16,11 +16,11 @@ include 'connectToDb.php';
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
 
-    $r = $conn->query("SELECT name FROM category");
+    $r = $conn->query("SELECT name FROM category WHERE name = '$name'");
     if ($r->num_rows > 0) {
         echo "Category already exists.";
     } else {
-        $q = "INSERT IN TO category name VALUES '$name'";
+        $q = "INSERT INTO category (name) VALUES ('$name')";
         if ($conn->query($q) === true) {
             header('location:manage_products.php');
         } else {
